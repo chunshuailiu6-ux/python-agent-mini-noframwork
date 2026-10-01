@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mini-agent"
+version = "0.1.0"
+description = "轻量级 Python 智能代理 (mini-agent) 系统"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+authors = [{ name = "mini-agent" }]
+dependencies = [
+    "pydantic>=2.5,<3.0",
+    "python-dotenv>=1.0,<2.0",
+    "langchain>=0.1.0,<0.2.0",
+    "click>=8.1,<9.0",
+    "pyzmq>=25.0,<27.0",
+    "apscheduler>=3.10,<4.0",
+    "httpx>=0.25,<0.28",
+    "requests>=2.31,<3.0",
+]
+
+[project.optional-dependencies]
+docs = ["mkdocs>=1.5,<2.0", "mkdocs-material>=9.4,<10.0"]
+test = ["pytest>=7.4,<9.0", "pytest-asyncio>=0.21,<0.24"]
+
+[tool.setuptools.packages.find]
+include = ["agent*", "cli*", "mcp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
